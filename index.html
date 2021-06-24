@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Music Player</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="song player">
+<meta name="description" content="This is a song player.">
+
+<link rel="stylesheet" href="assets/css/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="assets/js/index.js"></script>
+
+</head>
+<body onload="onLoad()">
+
+<section class="main-container">
+
+<div class="container">
+    <div class="song-info">
+        <div class="thumbnail-cnt">
+            <img id="thumbnail" class="thumbnail anm-paused" src="assets/thumbnails/temp1.png" alt="Thumbnail">
+        </div>
+
+        <div class="song-details">
+            <h1 id="song-name" class="song-name">Jarico</h1>
+            <p id="song-makers" class="song-makers">VNCM | VNCM</p>
+        </div>
+    </div>
+
+    <div class="song-manager">
+        <div class="song-controls">
+            <audio src="a.mp3" id="song" preload="metadata"></audio>
+
+            <div class="song-time-cnt">
+                <div id="song-current-time" class="song-current-time">00:00</div>
+                <div class="time-slider-cnt">
+                    <input id="time-slider" class="time-slider" type="range" value="0" onclick="document.getElementById('song').currentTime = this.value">
+                </div>
+                <div id="song-duration" class="song-duration">00:00</div>
+            </div>
+
+            <div class="song-actions-cnt">
+                <button class="song-actions" onclick="toggleShuffle()"><i class="bi bi-shuffle"></i></button>
+
+                <button class="song-actions" onclick="previousSong()"><i class="bi bi-skip-backward-fill"></i></button>
+
+                <button id="play-pause-btn" class="song-actions" onclick="togglePlayPause()"><i class="bi bi-play-fill"></i></i></button>
+
+                <button id="next-song-btn" class="song-actions" onclick="nextSong()"><i class="bi bi-skip-forward-fill"></i></button>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="option-btn-cnt">
+        <button id="option-btn" class="option-btn" onclick="toggleSongsList()"><i class="bi bi-three-dots"></i></button>
+    </div>
+</div>
+
+<div id="songs-list" class="songs-list">
+    <button class="button-for-song" onclick="changeSong('temp1','a.mp3','A','P',0)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('temp2','b.mp3','B','L',1)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('temp2','c.mp3','C','T',2)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button>
+    
+    <!-- <button class="button-for-song" onclick="changeSong('temp2','Ball','B','L',1)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('temp2','Cat','C','T',2)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('temp2','Ball','B','L',1)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('temp2','Cat','C','T',2)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('temp2','Ball','B','L',1)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('temp2','Cat','C','T',2)">
+        <h1>Jarico</h1>
+        VNCM | VNCM
+    </button> -->
+</div>
+
+</section>
+
+</body>
+</html>
