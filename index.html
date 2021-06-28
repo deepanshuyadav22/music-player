@@ -1,113 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-<title>Music Player</title>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="keywords" content="song player">
 <meta name="description" content="This is a song player.">
 
+<title>Music Player</title>
+
 <link rel="stylesheet" href="assets/css/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<script src="assets/js/index.js"></script>
 
 </head>
 <body onload="onLoad()">
+
+<video id="bg-video" class="bg-video" autoplay muted loop><source></video>
 
 <section class="main-container">
 
 <div class="container">
     <div class="song-info">
         <div class="thumbnail-cnt">
-            <img id="thumbnail" class="thumbnail anm-paused" src="assets/thumbnails/temp1.png" alt="Thumbnail">
+            <img id="thumbnail" class="thumbnail anm-paused" alt="Thumbnail">
         </div>
 
         <div class="song-details">
-            <h1 id="song-name" class="song-name">Jarico</h1>
-            <p id="song-makers" class="song-makers">VNCM | VNCM</p>
+            <h1 id="song-name" class="song-name">--</h1>
+            <p id="song-makers" class="song-makers">-- | --</p>
         </div>
     </div>
 
     <div class="song-manager">
         <div class="song-controls">
-            <audio src="a.mp3" id="song" preload="metadata"></audio>
+            <audio id="song" preload="metadata"></audio>
 
             <div class="song-time-cnt">
-                <div id="song-current-time" class="song-current-time">00:00</div>
+                <div id="song-current-time" class="song-current-time">--:--</div>
                 <div class="time-slider-cnt">
-                    <input id="time-slider" class="time-slider" type="range" value="0" onclick="document.getElementById('song').currentTime = this.value">
+                    <input id="time-slider" class="time-slider" type="range" min="0" max="0" value="0" onclick="document.getElementById('song').currentTime = this.value">
                 </div>
-                <div id="song-duration" class="song-duration">00:00</div>
+                <div id="song-duration" class="song-duration">--:--</div>
             </div>
 
             <div class="song-actions-cnt">
-                <button class="song-actions" onclick="toggleShuffle()"><i class="bi bi-shuffle"></i></button>
+                <button id="shuffle-repeat-toggler" class="song-actions" onclick="toggleShuffleRepeat()"><i class="bi bi-shuffle"></i></button>
 
-                <button class="song-actions" onclick="previousSong()"><i class="bi bi-skip-backward-fill"></i></button>
+                <button id="prev-song-btn" class="song-actions" onclick="previousSong()"><i class="bi bi-skip-backward-fill"></i></button>
 
                 <button id="play-pause-btn" class="song-actions" onclick="togglePlayPause()"><i class="bi bi-play-fill"></i></i></button>
 
                 <button id="next-song-btn" class="song-actions" onclick="nextSong()"><i class="bi bi-skip-forward-fill"></i></button>
+
+                <button id="songs-list-btn" class="song-actions" onclick="toggleSongsList()"><i class="bi bi-music-note-list"></i></button>
             </div>
 
         </div>
     </div>
-    
-    <div class="option-btn-cnt">
-        <button id="option-btn" class="option-btn" onclick="toggleSongsList()"><i class="bi bi-three-dots"></i></button>
-    </div>
 </div>
 
 <div id="songs-list" class="songs-list">
-    <button class="button-for-song" onclick="changeSong('temp1','a.mp3','A','P',0)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
+    <button class="button-for-song" onclick="changeSong('AERØHEAD - Leaving.mp3','Vlog No Copyright Music','VNCM',0)">
+        <h1 id="song-0">AERØHEAD - Leaving</h1>
+        Vlog No Copyright Music | VNCM
     </button>
     
-    <button class="button-for-song" onclick="changeSong('temp2','b.mp3','B','L',1)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
+    <button class="button-for-song" onclick="changeSong('DayFox - Candy Friends.mp3','Vlog No Copyright Music','VNCM',1)">
+        <h1 id="song-1">DayFox - Candy Friends</h1>
+        Vlog No Copyright Music | VNCM
     </button>
     
-    <button class="button-for-song" onclick="changeSong('temp2','c.mp3','C','T',2)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
+    <button class="button-for-song" onclick="changeSong('DayFox - Pura Vida.mp3','Vlog No Copyright Music','VNCM',2)">
+        <h1 id="song-2">DayFox - Pura Vida</h1>
+        Vlog No Copyright Music | VNCM
     </button>
     
-    <!-- <button class="button-for-song" onclick="changeSong('temp2','Ball','B','L',1)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
+    <button class="button-for-song" onclick="changeSong('Dusty Reel.mp3','Vlog No Copyright Music','VNCM',3)">
+        <h1 id="song-3">Dusty Reel</h1>
+        Vlog No Copyright Music | VNCM
     </button>
     
-    <button class="button-for-song" onclick="changeSong('temp2','Cat','C','T',2)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
+    <button class="button-for-song" onclick="changeSong('Ikson - New Day.mp3','Vlog No Copyright Music','VNCM',4)">
+        <h1 id="song-4">Ikson - New Day</h1>
+        Vlog No Copyright Music | VNCM
     </button>
     
-    <button class="button-for-song" onclick="changeSong('temp2','Ball','B','L',1)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
+    <button class="button-for-song" onclick="changeSong('Jarico - Island.mp3','Vlog No Copyright Music','VNCM',5)">
+        <h1 id="song-5">Jarico - Island</h1>
+        Vlog No Copyright Music | VNCM
     </button>
     
-    <button class="button-for-song" onclick="changeSong('temp2','Cat','C','T',2)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
+    <button class="button-for-song" onclick="changeSong('LiQWYD & Carl Storm - Stay Here.mp3','Vlog No Copyright Music','VNCM',6)">
+        <h1 id="song-6">LiQWYD & Carl Storm - Stay Here</h1>
+        Vlog No Copyright Music | VNCM
     </button>
     
-    <button class="button-for-song" onclick="changeSong('temp2','Ball','B','L',1)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
+    <button class="button-for-song" onclick="changeSong('Markvard - Affection.mp3','Vlog No Copyright Music','VNCM',7)">
+        <h1 id="song-7">Markvard - Affection</h1>
+        Vlog No Copyright Music | VNCM
     </button>
     
-    <button class="button-for-song" onclick="changeSong('temp2','Cat','C','T',2)">
-        <h1>Jarico</h1>
-        VNCM | VNCM
-    </button> -->
+    <button class="button-for-song" onclick="changeSong('Markvard - Colors.mp3','Vlog No Copyright Music','VNCM',8)">
+        <h1 id="song-8">Markvard - Colors</h1>
+        Vlog No Copyright Music | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('MBB - Feel Good.mp3','Vlog No Copyright Music','VNCM',9)">
+        <h1 id="song-9">MBB - Feel Good</h1>
+        Vlog No Copyright Music | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('Middle Child - Miss You.mp3','Vlog No Copyright Music','VNCM',10)">
+        <h1 id="song-10">Middle Child - Miss You</h1>
+        Vlog No Copyright Music | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('Mike Leite - Summer Vibes.mp3','Vlog No Copyright Music','VNCM',11)">
+        <h1 id="song-11">Mike Leite - Summer Vibes</h1>
+        Vlog No Copyright Music | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('Osheen & JayJen - Flying.mp3','Vlog No Copyright Music','VNCM',12)">
+        <h1 id="song-12">Osheen & JayJen - Flying</h1>
+        Vlog No Copyright Music | VNCM
+    </button>
+    
+    <button class="button-for-song" onclick="changeSong('Rolipso & Shiah Maisel - Good Enough.mp3','Vlog No Copyright Music','VNCM',13)">
+        <h1 id="song-13">Rolipso & Shiah Maisel - Good Enough</h1>
+        Vlog No Copyright Music | VNCM
+    </button>
+
+    <!-- 
+        Syntax:
+        <button class="button-for-song" onclick="changeSong('SONG_NAME','ARTIST','ALBUM',BUTTON_NUMBER)">
+            <h1 id="song-">SONG_NAME</h1>
+            ARTIST | ALBUM
+        </button>
+
+        -------------------------------------------------------------
+
+        If you want to set thumbnail according to song, then follow syntax given below:
+        <button class="button-for-song" onclick="changeSong('THUMBNAIL_IMAGE_NAME','SONG_NAME','ARTIST','ALBUM',BUTTON_NUMBER)">
+            <h1 id="song-">SONG_NAME</h1>
+            ARTIST | ALBUM
+        </button>
+
+        (THUMBNAIL_IMAGE_NAME -> without extension)
+     -->
 </div>
 
 </section>
+
+<script src="assets/js/index.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 </body>
 </html>
